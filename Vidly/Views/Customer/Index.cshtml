@@ -1,0 +1,29 @@
+﻿@model Vidly.ViewModels.CustomerIndexViewModel;
+@{
+    ViewData["Title"] = "Customers";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Customers</h1>
+@if (Model.Customers.Count > 0)
+{
+    <ul class="list-group">
+
+        <p>There are @Model.Customers.Count Customers.</p>
+             
+            @foreach (Customer customer in Model.Customers)
+            {
+                <li class="list-group-item" style={display: inline-block}><h3><a asp-area="" asp-controller="Customer" asp-action="Details" asp-route-id=@customer.Id>@customer.Name </a>@Html.Partial("_DeleteCustomer", customer.Id)</h3></li>
+            }
+        </ul>
+        }
+        else
+        {
+    <ul class="list-group">
+            <li class="list-group-item">
+                <h3>There are no customers!</h3>
+                <button class="btn btn-primary btn-block">Add Customer</button>
+            </li>
+
+    </ul>
+        }

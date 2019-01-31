@@ -1,0 +1,32 @@
+﻿@model Vidly.ViewModels.ViewMoviesViewModel;
+@{
+    ViewData["Title"] = "List";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@if (Model.Movies.Count > 0)
+{
+    <ul class="list-group">
+        <h1>Movies</h1>
+        <p>There are @Model.Movies.Count movies to view.</p>
+
+        @foreach (Movie movie in Model.Movies)
+        {
+        <li class="list-group-item">
+           
+            <h3>
+                @movie.Name
+                        @Html.Partial("_DeleteCustomer", movie.Id)
+                    </h3>
+        </li>
+        }
+    </ul>
+} else
+{
+    <ul class="list-group">
+        <li><h1>Ain't no movies, bitch!</h1></li>
+    </ul>
+}
+
+
+
